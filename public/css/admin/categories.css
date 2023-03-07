@@ -1,0 +1,88 @@
+#attribute-list {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: inset 0 0 10px rgba(30, 30, 30, .2);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.attributes-item {
+    display: flex;
+    background-color: rgba(30, 30, 30, .1);
+    border-radius: 5px;
+    width: fit-content;
+    padding: 5px 20px;
+    margin: 0 10px 10px 0;
+    border: 1px solid transparent;
+    height: fit-content;
+}
+
+.attributes-item:hover {
+    box-shadow: 0 0 10px rgba(30, 30, 30, .2);
+    transition: all ease .25s;
+}
+
+.attribute-item-parent {
+    border: 1px solid blue;
+    display: block;
+}
+.attribute-owner {
+    font-size: 13px;
+}
+
+.have-child {
+    /* border: 1px solid red; */
+}
+
+.categoies-tree .accordion {
+    /* width: fit-content; */
+    /* margin-bottom: 10px; */
+    /* border: 1px solid red; */
+    /* border-bottom: 1px solid red; */
+}
+
+.categoies-tree .accordion-header {
+    padding: 0;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+    border: 1px solid rgba(30, 30, 30, .2);
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(30, 30, 30, .2);
+    border-radius: 5px;
+}
+
+.categoies-tree .child{
+    position: relative;
+    white-space: nowrap;
+    margin-left: 30px;
+}
+
+.categoies-tree .accordion-button {
+    padding: 0;
+}
+
+.categoies-tree .accordion-item {
+    border: none;
+    box-shadow: unset;
+}
+
+.categoies-tree .accordion-button:focus {
+    box-shadow: unset;
+}
+
+.categoies-tree .accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: white;
+    box-shadow: unset;
+}
+
+.categoies-tree .accordion-collapse label {
+    font-size: 14px;
+}
+
+.categoies-tree .accordion-body {
+    /* padding: 1rem 3px; */
+    padding: 0;
+}
