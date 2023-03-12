@@ -26,7 +26,7 @@ class PaymentController extends Controller
     {
         $descripption = "Покупка товара";
 
-        $cart = ($request->input("mobile") == true) ? $request->input("cart") : collect(json_decode(Cookie::get('cart')));
+        $cart = ($request->input("mobile") == true) ? collect(json_decode($request->input("cart"))) : collect(json_decode(Cookie::get('cart')));
         $cart->transform(function ($cartItem) {
             $product = Product::find($cartItem->id);
             $product->count = $cartItem->count;
@@ -65,7 +65,7 @@ class PaymentController extends Controller
             'mobile' => $request->input("mobile"),
         ]);
 
-        return redirect($link) ($request->input("mobile") == true) ? $request->input("cart") : Cookie::get('cart');
+        return ($request->input("mobile") == true) ? $link : redirect($link);
     }
 
 
