@@ -26,7 +26,7 @@ class PaymentController extends Controller
     {
         $descripption = "Покупка товара";
 
-        $cart = collect(json_decode(Cookie::get('cart')));
+        $cart = ($request->input("mobile") == true) ? $request->input("cart") : collect(json_decode(Cookie::get('cart')));
         $cart->transform(function ($cartItem) {
             $product = Product::find($cartItem->id);
             $product->count = $cartItem->count;
@@ -44,12 +44,12 @@ class PaymentController extends Controller
 
         $transaction = new Transaction();
         $transaction->price = $price;
-        $transaction->user = Auth::user()->id;
+        $transaction->user = ($request->input("mobile") == true) ? $request->input("user") : Auth::user()->id;
         $transaction->description = $descripption;
         $transaction->save();
 
         $link = $service->createPayment($price, $descripption, [
-            'user' => Auth::user()->id,
+            'user' => ($request->input("mobile") == true) ? $request->input("user") : Auth::user()->id,
             'name' => $request->input('name'),
             'surname' => $request->input('surname'),
             'email' => $request->input('email'),
@@ -61,10 +61,11 @@ class PaymentController extends Controller
             'build' => $request->input('build'),
             'comment' => $request->input('comment'),
             'transaction' => $transaction->id,
-            'cart' => Cookie::get('cart'),
+            'cart' => ($request->input("mobile") == true) ? $request->input("cart") : Cookie::get('cart'),
+            'mobile' => $request->input("mobile"),
         ]);
 
-        return redirect($link);
+        return redirect($link) ($request->input("mobile") == true) ? $request->input("cart") : Cookie::get('cart');
     }
 
 

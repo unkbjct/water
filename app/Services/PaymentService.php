@@ -25,7 +25,7 @@ class PaymentService
             ],
             'confirmation' => [
                 'type' => 'redirect',
-                'return_url' => route('order.successful', ['transaction' => $options['transaction']]),
+                'return_url' => route('order.successful', ['transaction' => $options['transaction'], 'mobile' => $options['mobile']]),
             ],
             'capture' => false,
             'metadata' => [
