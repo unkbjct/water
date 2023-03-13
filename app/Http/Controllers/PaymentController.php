@@ -146,7 +146,7 @@ class PaymentController extends Controller
                     $orderProduct->price = $product->price;
                     $orderProduct->sale = $product->sale;
                     $orderProduct->save();
-                Log::debug("success");
+                Log::debug("fuck");
                 }
             }
         }
