@@ -48,12 +48,12 @@ class SingleController extends Controller
         ]);
     }
 
-    public function orderSuccessful(Transaction $transaction)
+    public function orderSuccessful(Transaction $transaction, Request $request)
     {
-        sleep(2);
         $order = Order::where("transaction", $transaction->id)->get();
         // dd($order->isNotEmpty());
         if ($order->isEmpty()) {
+            sleep(1);
             $this->orderSuccessful($transaction);
             return;
         }
@@ -61,6 +61,7 @@ class SingleController extends Controller
         // dd($order);
         return view('order-successful', [
             'order' => $order,
+            'mobile' => $request->input("mobile"),
         ]);
     }
 

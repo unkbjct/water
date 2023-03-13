@@ -24,7 +24,11 @@
                     <div class="display-5">Спасибо за покупку!</div>
                     <p class="fw-semibold">Ваш заказ № {{$order->id}} успешно создан</p>    
                 </div>
-                <a href="{{route('account.history')}}" class="btn btn-warning">Посмотреть в личном кабинете</a>
+                @if($mobile == false)
+                    <a href="{{route('account.history')}}" class="btn btn-warning">Посмотреть в личном кабинете</a>
+                @else
+                    <p class="fw-semibold">Вы можете вернуться в приложение или увидеть заказ в <a href="{{route('account.history')}}" class="link">личном кабинете</a> личном кабинете на сайте</p>
+                @endif
             </div>
             {{-- {{$order->id}} --}}
         </section>

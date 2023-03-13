@@ -128,8 +128,10 @@
                                 <div class="about-value">{{ $product->article }}</div>
                             </div>
                             <div class="about-item">
-                                <div class="about-title">{{ $product->attributes[0]->name }}</div>
-                                <div class="about-value">{{ $product->attributes[0]->value }}</div>
+                                @if($product->attributes->isNotEmpty())
+                                    <div class="about-title">{{ $product->attributes[0]->name }}</div>
+                                    <div class="about-value">{{ $product->attributes[0]->value }}</div>
+                                @endif
                             </div>
                             <a href="#aboutProduct" class="text-decoration-none">Описание товара</a>
                         </div>
@@ -357,7 +359,7 @@
                     <div class="mb-4">
                         <h3>{{ $product->title }}</h3>
                         <span class="me-4">{{ $product->category->title }}</span>
-                        <span>{{ $product->brand }}</span>
+                        <span>{{ $product->brand->name }}</span>
                     </div>
                     <input type="hidden" required name="raiting" id="raiting">
                     <div class="mb-3 d-flex align-items-center">

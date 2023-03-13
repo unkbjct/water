@@ -47,7 +47,7 @@ Route::group(['prefix' => 'catalog'], function () {
     Route::get('/{category}', [CatalogViews::class, 'catalog'])->name('catalog.search');
 });
 
-Route::group(['prefix' => 'product/{product}'], function () {
+Route::group(['prefix' => 'products/{product}'], function () {
 
     Route::get('/', [ProductViews::class, 'product'])->name('product');
 
@@ -68,11 +68,11 @@ Route::group(['prefix' => 'account'], function () {
 
     Route::get('/sign-up', [AccountViews::class, 'signUp'])->name('account.signUp');
 
-    Route::get('/logout', [AccountViews::class, 'logout'])->name('account.logout');
+    Route::get('/logout', [AccountViews::class, 'logout'])->middleware("auth")->name('account.logout');
 
-    Route::get('/profile', [AccountViews::class, 'personal'])->name('account.personal');
+    Route::get('/profile', [AccountViews::class, 'personal'])->middleware("auth")->name('account.personal');
 
-    Route::get('/history', [AccountViews::class, 'history'])->name('account.history');
+    Route::get('/history', [AccountViews::class, 'history'])->middleware("auth")->name('account.history');
 });
 
 Route::group(['prefix' => 'admin'], function () {

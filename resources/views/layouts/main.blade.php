@@ -297,7 +297,7 @@ $navList = App\Models\Category::where("depth", "=", "1")->get();
                                     <div class="cart-img">
                                         <img src="{{ asset($cartItem->image) }}" class="h-100">
                                     </div>
-                                    <div class="cart-info">
+                                    <div class="cart-info w-100">
                                         <div class="cart-title">
                                             <p class="fw-semibold">{{ $cartItem->title }}</p>
                                         </div>

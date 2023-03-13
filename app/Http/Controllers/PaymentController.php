@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use YooKassa\Model\Notification\NotificationSucceeded;
 use YooKassa\Model\Notification\NotificationWaitingForCapture;
 use YooKassa\Model\NotificationEventType;
+use Illuminate\Database\Eloquent\Collection;
 
 class PaymentController extends Controller
 {
@@ -27,11 +28,24 @@ class PaymentController extends Controller
         $descripption = "Покупка товара";
 
         $cart = ($request->input("mobile") == true) ? collect(json_decode($request->input("cart"))) : collect(json_decode(Cookie::get('cart')));
-        $cart->transform(function ($cartItem) {
-            $product = Product::find($cartItem->id);
-            $product->count = $cartItem->count;
-            return $product;
-        });
+        if($request->input("mobile")) {
+            $tmpCart = new collection();
+            foreach($cart as $cartItem) {
+                $tmpProduct = Product::find($cartItem->id);
+                $tmpProduct->count = $cartItem->count;
+                $tmpCart->push($tmpProduct);
+            }
+            $cart = $tmpCart;
+            $sendCart = $tmpCart;
+        }else{
+            $sendCart = [];
+            foreach($cart as $cartItem) {
+                array_push($sendCart, [
+                    'id' => $cartItem->id,
+                    'count' => $cartItem->count
+                ]);
+            }
+        }
 
         $fullPrice = 0;
         $fullSale  = 0;
@@ -41,6 +55,8 @@ class PaymentController extends Controller
         }
 
         $price = (float)$fullPrice - $fullSale;
+
+        // return ($request->input());
 
         $transaction = new Transaction();
         $transaction->price = $price;
@@ -61,7 +77,7 @@ class PaymentController extends Controller
             'build' => $request->input('build'),
             'comment' => $request->input('comment'),
             'transaction' => $transaction->id,
-            'cart' => ($request->input("mobile") == true) ? $request->input("cart") : Cookie::get('cart'),
+            'cart' => ($request->input("mobile") == true) ? $request->input("cart") : json_encode($sendCart),
             'mobile' => $request->input("mobile"),
         ]);
 
@@ -95,6 +111,7 @@ class PaymentController extends Controller
                 $transaction->status = "FINISHED";
                 $transaction->save();
 
+                // return;
 
                 $order = new Order();
                 $cart = collect(json_decode($metadata->cart));
@@ -114,6 +131,11 @@ class PaymentController extends Controller
                 $order->comment = $metadata->comment;
                 $order->save();
 
+                // $idList = [];
+                // foreach ($cart as $cartItem) {
+                //     array_push($idList, $cartItem->id);
+                // }
+                // $cart
                 foreach ($cart as $cartItem) {
 
                     $product = Product::find($cartItem->id);
@@ -124,7 +146,7 @@ class PaymentController extends Controller
                     $orderProduct->price = $product->price;
                     $orderProduct->sale = $product->sale;
                     $orderProduct->save();
-                    Log::debug(123);
+                Log::debug("success");
                 }
             }
         }
