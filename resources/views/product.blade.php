@@ -128,7 +128,7 @@
                                 <div class="about-value">{{ $product->article }}</div>
                             </div>
                             <div class="about-item">
-                                @if($product->attributes->isNotEmpty())
+                                @if ($product->attributes->isNotEmpty())
                                     <div class="about-title">{{ $product->attributes[0]->name }}</div>
                                     <div class="about-value">{{ $product->attributes[0]->value }}</div>
                                 @endif
@@ -313,7 +313,13 @@
                             </div>
                         </div> --}}
                         <button class="btn btn-warning w-100 mt-4" data-bs-toggle="modal"
-                            data-bs-target="#createReviewModal">Оставить отзыв</button>
+                            data-bs-target="#createReviewModal"@guest disabled title="Только авторизованный пользователь может оставить отзыв" @endguest>Оставить
+                            отзыв</button>
+                        @guest
+                            <div class="text-center mt-4">
+                                <small class="text-center">Только авторизованный пользователь может оставить отзыв!</small>
+                            </div>
+                        @endguest
                     </div>
                     <div class="mt-4">
                         <p>Замечания и предложения по работе магазина вы можете написать в разделе <a class="link"

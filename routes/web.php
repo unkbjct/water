@@ -190,11 +190,12 @@ Route::group(['prefix' => 'api'], function () {
     //     return $product;
     // });
 
-    Route::group(['prefix' => 'products'], function ()
-    {
-       Route::post('/', [AccountApi::class, 'products']);
-       
-       Route::post('/{product}', [AccountApi::class, 'productItem']);
+    Route::group(['prefix' => 'products'], function () {
+        Route::post('/', [AccountApi::class, 'products']);
+
+        Route::post('/review', [AccountApi::class, 'review']);
+        
+        Route::post('/{product}', [AccountApi::class, 'productItem']);
     });
 
     Route::group(['prefix' => 'account'], function () {
@@ -212,7 +213,5 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/edit', [AccountApi::class, 'edit']);
 
         Route::post('/edit/password', [AccountApi::class, 'editPassword']);
-        
     });
-
 });

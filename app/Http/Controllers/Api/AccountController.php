@@ -319,6 +319,37 @@ class AccountController extends Controller
     }
 
 
+    public function review(Request $request)
+    {
+        $review = new Review();
+        $review->user = $request->userId;
+        $review->product = $request->productId;
+        $review->rating = $request->input('score');
+        $review->advantages = $request->input('pluses');
+        $review->flaw = $request->input('minuses');
+        $review->comment = $request->input('comment');
+        $review->save();
+
+        $product = Product::find($request->productId);
+
+        $sum = $product->raiting_sum + $request->input('raiting');
+        $count = $product->raiting_count + 1;
+
+        $product->rating_count = $count;
+        $product->rating_sum = $sum;
+        $product->rating = (float)($sum / $count);
+        $product->save();
+
+        return response([
+            'status' => 'success',
+            'message' => 'Отзыв добавлен успешно!',
+            'data' => []
+        ]);
+    }
+
+
+
+
     function buildChildList($list, $item)
     {
         $children = Category::where("parent_id", $item->id)->get();
