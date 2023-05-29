@@ -154,8 +154,6 @@ class AccountController extends Controller
         // if($request->input('email') == '')
         $user = User::find($request->input('id'));
 
-        return $user;
-
         if ($user->email != $request->input('email') && User::where('email', $request->input('email'))->first()) $errs['email'] = 'Данная почта уже кем-то используется!';
 
         if ($errs) {
