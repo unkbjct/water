@@ -89,7 +89,7 @@ class PaymentController extends Controller
     public function callback(Request $request, PaymentService $service)
     {
         $source = file_get_contents('php://input');
-        $requestBody = json_decode($source, true);
+        $requsetBody = json_decode($source, true);
         if(isset($requsetBody['event']) && $requsetBody['event'] === NotificationEventType::PAYMENT_CANCELED){
             $notification = new NotificationCanceled($requsetBody);
         }else if(isset($requsetBody['event']) && $requsetBody['event'] === NotificationEventType::PAYMENT_SUCCEEDED){
