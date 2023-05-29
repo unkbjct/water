@@ -15,6 +15,7 @@ use YooKassa\Model\Notification\NotificationSucceeded;
 use YooKassa\Model\Notification\NotificationWaitingForCapture;
 use YooKassa\Model\NotificationEventType;
 use Illuminate\Database\Eloquent\Collection;
+use YooKassa\Model\Notification\NotificationCanceled;
 
 class PaymentController extends Controller
 {
@@ -63,7 +64,7 @@ class PaymentController extends Controller
         $transaction->user = ($request->input("mobile") == true) ? $request->input("user") : Auth::user()->id;
         $transaction->description = $descripption;
         $transaction->save();
-
+        Log::debug($request->input('cart'));
         $link = $service->createPayment($price, $descripption, [
             'user' => ($request->input("mobile") == true) ? $request->input("user") : Auth::user()->id,
             'name' => $request->input('name'),
@@ -89,10 +90,16 @@ class PaymentController extends Controller
     {
         $source = file_get_contents('php://input');
         $requestBody = json_decode($source, true);
-
-        $notification = (isset($requestBody['event']) && $requestBody['event'] === NotificationEventType::PAYMENT_SUCCEEDED)
-            ? new NotificationSucceeded($requestBody)
-            : new NotificationWaitingForCapture($requestBody);
+        if(isset($requsetBody['event']) && $requsetBody['event'] === NotificationEventType::PAYMENT_CANCELED){
+            $notification = new NotificationCanceled($requsetBody);
+        }else if(isset($requsetBody['event']) && $requsetBody['event'] === NotificationEventType::PAYMENT_SUCCEEDED){
+            $notification = new NotificationSucceeded($requsetBody);
+        }else if(isset($requsetBody['event']) && $requsetBody['event'] === NotificationEventType::PAYMENT_WAITING_FOR_CAPTURE){
+            $notification = new NotificationWaitingForCapture($requsetBody);
+        }
+        // $notification = (isset($requestBody['event']) && $requestBody['event'] === NotificationEventType::PAYMENT_SUCCEEDED)
+        //     ? new NotificationSucceeded($requestBody)
+        //     : new NotificationWaitingForCapture($requestBody);
 
         $payment = $notification->getObject();
 

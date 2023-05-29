@@ -213,5 +213,8 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/edit', [AccountApi::class, 'edit']);
 
         Route::post('/edit/password', [AccountApi::class, 'editPassword']);
+
+        Route::post('cart', [AccountApi::class, 'cart']);
+        
     });
 });
