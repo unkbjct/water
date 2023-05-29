@@ -332,7 +332,7 @@ class AccountController extends Controller
 
         $product = Product::find($request->productId);
 
-        $sum = $product->raiting_sum + $request->input('raiting');
+        $sum = $product->raiting_sum + $request->input('score');
         $count = $product->raiting_count + 1;
 
         $product->rating_count = $count;
