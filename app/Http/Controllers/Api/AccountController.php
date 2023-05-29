@@ -170,7 +170,9 @@ class AccountController extends Controller
         return [
             'status' => 'success',
             'message' => 'Изменения сохранены!',
-            'data' => []
+            'data' => [
+                'user' => $user,
+            ]
         ];
     }
 
