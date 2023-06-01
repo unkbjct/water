@@ -17,19 +17,20 @@
             <div id="pc-slider" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="5000">
-                        <a href=""><img class="w-100" src="{{ asset('public/storage/img/slider-pc/1.webp') }}"
-                                alt=""></a>
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}">
+                            <img class="w-100" src="{{ asset('public/storage/img/slider-pc/1.webp') }}" alt=""></a>
                     </div>
                     <div class="carousel-item" data-bs-interval="5000">
-                        <a href=""><img class="w-100" src="{{ asset('public/storage/img/slider-pc/2.webp') }}"
-                                alt=""></a>
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}">
+                            <img class="w-100" src="{{ asset('public/storage/img/slider-pc/2.webp') }}" alt=""></a>
                     </div>
                     <div class="carousel-item" data-bs-interval="5000">
-                        <a href=""><img class="w-100" src="{{ asset('public/storage/img/slider-pc/3.webp') }}"
-                                alt=""></a>
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}">
+                            <img class="w-100" src="{{ asset('public/storage/img/slider-pc/3.webp') }}" alt=""></a>
                     </div>
                     <div class="carousel-item" data-bs-interval="5000">
-                        <a href=""><img class="w-100" src="{{ asset('public/storage/img/slider-pc/4.webp') }}"
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}">
+                            <img class="w-100" src="{{ asset('public/storage/img/slider-pc/4.webp') }}"
                                 alt=""></a>
                     </div>
                 </div>
@@ -45,20 +46,20 @@
             <div id="mobile-slider" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="5000">
-                        <a href=""><img class="w-100" src="{{ asset('public/storage/img/slider-mob/1.webp') }}"
-                                alt=""></a>
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}"><img class="w-100"
+                                src="{{ asset('public/storage/img/slider-mob/1.webp') }}" alt=""></a>
                     </div>
                     <div class="carousel-item" data-bs-interval="5000">
-                        <a href=""><img class="w-100" src="{{ asset('public/storage/img/slider-mob/2.webp') }}"
-                                alt=""></a>
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}"><img class="w-100"
+                                src="{{ asset('public/storage/img/slider-mob/2.webp') }}" alt=""></a>
                     </div>
                     <div class="carousel-item" data-bs-interval="5000">
-                        <a href=""><img class="w-100" src="{{ asset('public/storage/img/slider-mob/3.webp') }}"
-                                alt=""></a>
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}"><img class="w-100"
+                                src="{{ asset('public/storage/img/slider-mob/3.webp') }}" alt=""></a>
                     </div>
                     <div class="carousel-item" data-bs-interval="5000">
-                        <a href=""><img class="w-100" src="{{ asset('public/storage/img/slider-mob/4.webp') }}"
-                                alt=""></a>
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}"><img class="w-100"
+                                src="{{ asset('public/storage/img/slider-mob/4.webp') }}" alt=""></a>
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#mobile-slider" data-bs-slide="prev">
@@ -135,21 +136,21 @@
             <div class="row gy-4">
                 <div class="col-md-4">
                     <div class="rounded overflow-hidden">
-                        <a href="">
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}">
                             <img src="{{ asset('public/storage/img/actions/1.webp') }}" alt="" class="w-100">
                         </a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="rounded overflow-hidden">
-                        <a href="">
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}">
                             <img src="{{ asset('public/storage/img/actions/2.webp') }}" alt="" class="w-100">
                         </a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="rounded overflow-hidden">
-                        <a href="">
+                        <a href="{{ route('catalog.search', ['category' => 'santehnika']) }}">
                             <img src="{{ asset('public/storage/img/actions/3.webp') }}" alt="" class="w-100">
                         </a>
                     </div>
