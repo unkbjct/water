@@ -285,7 +285,7 @@ class AdminController extends Controller
     {
         $request->flash();
         foreach ($request->input() as $key => $value) {
-            if ($key === "_token" && $key == 'attempt') continue;
+            if ($key === "_token" || $key == 'attempt') continue;
             if ($value === null) continue;
             if (str_contains($key, "id")) {
                 $list->where(str_replace("_", ".", $key), $value);
